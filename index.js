@@ -10,7 +10,7 @@ function createMenuItem(name, cost, category){
     return {name, cost, category};
 
 }
-console.log("it's alive, buahahahahahahahahah!")
+// console.log("it's alive, buahahahahahahahahah!")
 /* Task 1b: use your function to create 3 more menu items. You may add any items to the menu that you'd like */
 console.log(createMenuItem("Onigiri", 3, "Snack"));
 console.log(createMenuItem("Shabu Shabu", 15, "Lunch"));
@@ -27,20 +27,23 @@ and should return a number.
 For example, burger.discount("teacher") would return 13.5 and burger.discount("public") would return 16.2*/
 
 
-// // create an object holding the discount options
-// burgers.who = {
-//   "teacher" : 0.25,
-//   "student" : 0.25,
-//   "public" : 0.10
-// }
 
-// //add a function to burger object.
-// burger.discount = function (){
-//   //return the cost - mathed discount. pull percentage from who object
-//   return cost - cost * 0.10 //burgers.keyWho;
-// }
-// console.log(burger.discount);
-// console.log(`task 2 is wrong`);
+
+
+// add an object holding the discount options into the burger object
+burger.discounts = {
+  "teacher" : 0.25,
+  "student" : 0.25,
+  "public" : 0.10
+}
+console.log("burger.discounts", burger.discounts);
+
+//add a function to burger object.
+burger.discountCalc = function (input) {
+  return this.price - this.price * this.discounts[input]
+}
+console.log(burger.discountCalc("public"));
+console.log(`task 2 is wrong`);
 
 
 ///////////////Reviews (MVP)///////////////////
@@ -56,8 +59,12 @@ const reviews = [{name: "Daniela", rating: 5, feedback:"Beautiful atmosphere and
 ]
 
 /* Task 3: Console.log just Julius' feedback */
+var feedback="rating";
+var Julius = 5;
 
-console.log(reviews[5].feedback);
+console.log(reviews[5]["feedback"]);
+console.log(reviews[5][feedback]);//bracket notation tries to use a string will take a string variable, so we write string literal if it's referencing something inside the parent element.
+console.log(reviews[5].feedback);//pulls the value from parent obeject's key
 
 /* Task 4: Add a new rating with your (fictitious) opinions of the restaurant in the same format as the reviews above. */
 
@@ -105,6 +112,8 @@ and should return a string in the format `name} gave the restaurant a {rating}, 
 
 For example, if getLastReview is invoked passing the reviews array it will return `Reyna gave the restaurant a 3.5 star review and their feedback was: "this place is chill with really cool people, great for getting work done on weekdays"`.
 */
+
+//Why didn't this convert to arrow function? Bc the string literal?
 function getLastReview(array) {
     return  `${array[array.length-1].name} gave the restaurant a ${array[array.length-1].rating}, and their feedback was: ${array[array.length-1].feedback}`
   }
@@ -124,10 +133,16 @@ console.log("getLastReview: ", getLastReview(reviews));
     {name:"Lauren", rating: 4, feedback: "Absolutely love that they have karaoke Fridays! Food and drink selection is okay."}]
 */
 
- function getReviewByRating(/* code here */) {
-    /* code here */
+ function getReviewByRating(array, inputRating) {
+   let newArray = [];
+  for ( i = 0 ; i < array.length ; i++ ) {
+    if (Math.floor(array[i].rating) === Math.floor(inputRating) ) {
+      newArray.push(array[i]);
+    }
   }
-
+  return newArray;
+  }
+console.log(getReviewByRating(reviews, 4));
 
 /** STRETCH 2: Write a function called 'getLongestReview' that returns an array containing all reviews longer than 15 words.
 
