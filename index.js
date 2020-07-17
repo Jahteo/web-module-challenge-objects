@@ -24,15 +24,15 @@ const breakfastBurrito = {name: "Breakfast Burrito", price: 16, category:"Breakf
 
 /* Task 1a: write a function to return more menu items with the same format as the items above. */
 
-function createMenuItem(name, cost, category){
-    return {name, cost, category};
-
+function createMenuItem (name, cost, category) {
+  return {name, cost, category};
 }
+
 // console.log("it's alive, buahahahahahahahahah!")
 /* Task 1b: use your function to create 3 more menu items. You may add any items to the menu that you'd like */
-console.log(createMenuItem("Onigiri", 3, "Snack"));
-console.log(createMenuItem("Shabu Shabu", 15, "Lunch"));
-console.log(createMenuItem("Okonomiyaki", 20, "Dinner"));
+console.log("Task 1b: ", createMenuItem ("Onigiri", 3, "Snack") );
+console.log("Task 1b: ", createMenuItem ("Shabu Shabu", 15, "Lunch") );
+console.log("Task 1b: ", createMenuItem ("Okonomiyaki", 20, "Dinner") );
 
 /* Task 2: You're having a lunch special! 25% off for teachers and students, 10% off for everyone else. Add a method to your burger object that automatically calculates price given a string as a parameter.
 
@@ -45,23 +45,16 @@ and should return a number.
 For example, burger.discount("teacher") would return 13.5 and burger.discount("public") would return 16.2*/
 
 
-
-
-
-// add an object holding the discount options into the burger object
 burger.discounts = {
   "teacher" : 0.25,
   "student" : 0.25,
   "public" : 0.10
 }
-console.log("burger.discounts", burger.discounts);
 
-//add a function to burger object.
 burger.discountCalc = function (input) {
-  return this.price - this.price * this.discounts[input]
+  return this.price - this.price * this.discounts[input];
 }
-console.log(burger.discountCalc("public"));
-console.log(`task 2 is wrong`);
+console.log("Task 2: ", burger.discountCalc("public"));
 
 
 ///////////////Reviews (MVP)///////////////////
@@ -78,35 +71,32 @@ const reviews = [{name: "Daniela", rating: 5, feedback:"Beautiful atmosphere and
 
 /* Task 3: Console.log just Julius' feedback */
 
-
 var feedback="rating";//purely for testing below theory
 var Julius = 5;//also for testing below
 
-console.log(reviews[5]["feedback"]);//bracket notation is using a string. will pull (feedback key).
-console.log(reviews[Julius]["feedback"]);//Julius is pulling the variable (5). this will //same as above.
-console.log(reviews[5][feedback]);//bracket notation is using a variable here. (feedback variable) not the feedback inside the object
-console.log(reviews[5].feedback);//dot notation implies/assumes a string. Will pull the(feedback key). Variable cannot be used here.
+console.log("Task 3: ", reviews[5]["feedback"]);//bracket notation is using a string. will pull (feedback key).
+console.log("Task 3/theory test: ", reviews[Julius]["feedback"]);//Julius is pulling the variable (5). this will //same as above.
+console.log("Task 3/theory test: ", reviews[5][feedback]);//bracket notation is using a variable here. (feedback variable) not the feedback inside the object
+console.log("Task 3/theory test: ", reviews[5].feedback);//dot notation implies/assumes a string. Will pull the(feedback key). Variable cannot be used here.
 
 
 
 /* Task 4: Add a new rating with your (fictitious) opinions of the restaurant in the same format as the reviews above. */
 
-
 function addReview (array, name, rating, feedback) {
   array.push ( {name, rating, feedback} );
   return array;
 }
-console.log (addReview (reviews, "Josh", 1, "They ran out of silverware") ) ;
+console.log("Task 4: ", addReview (reviews, "Josh", 1, "They ran out of silverware") ) ;
 
 // Task 5: Add the following feedback to Reyna's rating - "this place is chill with really cool people, great for getting work done on weekdays"
-
 
 function editFeedback (array, index, newFeedback) {
   array[index].feedback = newFeedback;
   console.log(array[index])
   return newFeedback;
 }
-console.log(editFeedback(reviews, 7, "this place is chill with really cool people, great for getting work done on weekdays"));
+console.log("Task 5: ", editFeedback(reviews, 7, "this place is chill with really cool people, great for getting work done on weekdays"));
 
 
 /*  Task 6: Write a function to return a review based on the index of the review in the array.
@@ -121,10 +111,11 @@ and should return a string in the format `{name} gave the restaurant a {rating},
  * For example, if getReviewByIndex is invoked with reviews and the number 0
  * it will return `Daniela gave the restaurant a 5 star review and their feedback was: Beautiful atmosphere and wonderful vegan options!`
 */
-function getReviewByIndex(array, index) {
+
+function getReviewByIndex (array, index) {
     return `${array[index].name} gave the restaurant a ${array[index].rating}, and their feedback was: ${array[index].feedback}`
   }
-console.log(getReviewByIndex(reviews, 0));
+console.log("Task 6: ", getReviewByIndex(reviews, 0));
 
 /* Task 7: Write a function to get information about the most recent review called `getLastReview`
 
@@ -136,11 +127,11 @@ and should return a string in the format `name} gave the restaurant a {rating}, 
 For example, if getLastReview is invoked passing the reviews array it will return `Reyna gave the restaurant a 3.5 star review and their feedback was: "this place is chill with really cool people, great for getting work done on weekdays"`.
 */
 
-//Why didn't this convert to arrow function? Bc the string literal?
+//Josh Q: Why doesn't this convert to arrow function? Bc the string literal?
 function getLastReview(array) {
     return  `${array[array.length-1].name} gave the restaurant a ${array[array.length-1].rating}, and their feedback was: ${array[array.length-1].feedback}`
   }
-console.log("getLastReview: ", getLastReview(reviews));
+console.log("Task 7: ", getLastReview(reviews));
 
 ///////////////🍔☕️🍽 STRETCH🍔☕️🍽////////////////////
 
@@ -156,16 +147,16 @@ console.log("getLastReview: ", getLastReview(reviews));
     {name:"Lauren", rating: 4, feedback: "Absolutely love that they have karaoke Fridays! Food and drink selection is okay."}]
 */
 
- function getReviewByRating(array, inputRating) {
-   let newArray = [];
+ function getReviewByRating (array, inputRating) {
+  let newArray = [];
   for ( i = 0 ; i < array.length ; i++ ) {
-    if (Math.floor(array[i].rating) === Math.floor(inputRating) ) {
-      newArray.push(array[i]);
+    if (Math.floor (array[i].rating) === Math.floor (inputRating) ) {
+      newArray.push (array[i]);
     }
   }
   return newArray;
-  }
-console.log(getReviewByRating(reviews, 4));
+}
+console.log("stretch 1: ", getReviewByRating(reviews, 4));
 
 /** STRETCH 2: Write a function called 'getLongestReview' that returns an array containing all reviews longer than 15 words.
 
@@ -180,26 +171,25 @@ and should return an array of objects.
     {name: "Brett", rating: 3, feedback: "great selection of snacks and a nice cafe area to get work done during the day."},
     {name: "Julius", rating: 2, feedback: "I was largely unimpressed by this venue. Nothing special on the menu and too expensive. The atmosphere is polarizing, and not for me, but I think some would like it." }]
 */
-//logic:
-function getLongReviews(arr) {
+
+function getLongReviews (arr) {
   const longReviews = [];
-//loop through each review.
-  for (i = 0 ; i < arr.length ; i++) {
-    /* function countWords (arr) */ { //counts words in that review
-      let wordCount = 1;//to count the last word first
-      for (let characterIndex of arr[i].feedback) {
-        if (characterIndex === " ") {
-          wordCount++;
-        }
-      } //after the for..of loop finishes, add the arr[i] to the longReviews
-      if (wordCount >= 15) {
-        longReviews.push(arr[i])
+  for ( i = 0 ; i < arr.length ; i++ ) {
+    let wordCount = 1;
+    for (let characterIndex of arr[i].feedback) {
+      if (characterIndex === " ") {
+        wordCount++;
       }
+    }
+    if (wordCount >= 15) {
+      longReviews.push (arr[i])
     }
   }
   return longReviews;
 }
-console.log("getLongReviews: ", getLongReviews(reviews));
+
+console.log("Stretch 2 ", getLongReviews(reviews));
+
 /* STRETCH 3:  This challenge is not related to the data above!
 
 Write a function called carMarker
