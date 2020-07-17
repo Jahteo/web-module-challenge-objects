@@ -1,3 +1,21 @@
+/*
+Josh's epiphany that may need correcting:
+- I was struggling with using the proper syntax of dot & bracket notation when dealing with objects and arrays. Literally every task I was fighting undefined errors and not knowing why & spending 15 minutes *each time I tried to write a property*. Painful. After a *very* long debate with Ren, I think this is the problem I was having & the solution/explanation:
+-I couldn't understand why I had to use string literals inside some []'s but not others. My brain fails at remembering the simple idea of "use style a here, but style b there" when they're so similiar. Cue a 2 hr JS architecture discussion to untangle a possible explanation.
+=>In JS:
+  -object keys are actually strings that JS assumes the quotes around.
+    --name in the latte object below is actually "name", JS just doesn't make us type the quotes.
+      (exception for when they're a space or special character that makes makes the key look like not a string. The exception is 100% not the issue I was struggling with though.)
+    --this means thatwhen I try to reference a key in an object:
+      ---dot notation will also assume the  quotes around that name. (again, exception forces literal quotes, which forces bracket notation. not the struggle-issue though)
+      ---bracket notation however, *DOES NOT* assume the quotes around name.
+        ----(Which is why I can use "name banana" in bracket notation for example)
+        ----This means that I *must* use quotes for JS to understand I'm refering to the existing (implied) string key.
+        ----If I don't use quotes in bracket notation, it will be looking for a variable instead of a, implied string. (like we did in task 3 for examples)
+
+        Correct?
+        yes, this is probably implicitly understood by many, but this was one of the hardest bits for me so far in LS.
+*/
 ///////////////Menu Items (MVP)///////////////////
 
 const latte = {name: "Cafe Latte", price: 4, category: "Drinks"};
@@ -59,12 +77,17 @@ const reviews = [{name: "Daniela", rating: 5, feedback:"Beautiful atmosphere and
 ]
 
 /* Task 3: Console.log just Julius' feedback */
-var feedback="rating";
-var Julius = 5;
 
-console.log(reviews[5]["feedback"]);
-console.log(reviews[5][feedback]);//bracket notation tries to use a string will take a string variable, so we write string literal if it's referencing something inside the parent element.
-console.log(reviews[5].feedback);//pulls the value from parent obeject's key
+
+var feedback="rating";//purely for testing below theory
+var Julius = 5;//also for testing below
+
+console.log(reviews[5]["feedback"]);//bracket notation is using a string. will pull (feedback key).
+console.log(reviews[Julius]["feedback"]);//Julius is pulling the variable (5). this will //same as above.
+console.log(reviews[5][feedback]);//bracket notation is using a variable here. (feedback variable) not the feedback inside the object
+console.log(reviews[5].feedback);//dot notation implies/assumes a string. Will pull the(feedback key). Variable cannot be used here.
+
+
 
 /* Task 4: Add a new rating with your (fictitious) opinions of the restaurant in the same format as the reviews above. */
 
