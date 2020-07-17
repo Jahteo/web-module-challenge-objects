@@ -180,11 +180,26 @@ and should return an array of objects.
     {name: "Brett", rating: 3, feedback: "great selection of snacks and a nice cafe area to get work done during the day."},
     {name: "Julius", rating: 2, feedback: "I was largely unimpressed by this venue. Nothing special on the menu and too expensive. The atmosphere is polarizing, and not for me, but I think some would like it." }]
 */
-  function getLongReviews(/* code here */) {
-    /* code here */
+//logic:
+function getLongReviews(arr) {
+  const longReviews = [];
+//loop through each review.
+  for (i = 0 ; i < arr.length ; i++) {
+    /* function countWords (arr) */ { //counts words in that review
+      let wordCount = 1;//to count the last word first
+      for (let characterIndex of arr[i].feedback) {
+        if (characterIndex === " ") {
+          wordCount++;
+        }
+      } //after the for..of loop finishes, add the arr[i] to the longReviews
+      if (wordCount >= 15) {
+        longReviews.push(arr[i])
+      }
+    }
   }
-
-
+  return longReviews;
+}
+console.log("getLongReviews: ", getLongReviews(reviews));
 /* STRETCH 3:  This challenge is not related to the data above!
 
 Write a function called carMarker
